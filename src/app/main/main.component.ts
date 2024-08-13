@@ -17,39 +17,39 @@ export class MainComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.loadTitles();
+    // this.loadTitles();
     this.loadVideos();
     this.loadImages();
   }
 
-  loadTitles(): void {
-    this.http.get<any[]>('http://localhost:3000/api/titles').subscribe({
-      next: (data) => this.titles = data,
-      error: (error) => console.error('Error loading titles', error)
-    });
-  }
+  // loadTitles(): void {
+  //   this.http.get<any[]>('https://backendapi-84rm.onrender.com/api/titles').subscribe({
+  //     next: (data) => this.titles = data,
+  //     error: (error) => console.error('Error loading titles', error)
+  //   });
+  // }
 
-  addTitle(): void {
-    if (this.newTitle.trim()) {
-      this.http.post('http://localhost:3000/api/titles', { name: this.newTitle }).subscribe({
-        next: () => {
-          this.newTitle = '';
-          this.loadTitles();
-        },
-        error: (error) => console.error('Error adding title', error)
-      });
-    }
-  }
+  // addTitle(): void {
+  //   if (this.newTitle.trim()) {
+  //     this.http.post('https://backendapi-84rm.onrender.com/api/titles', { name: this.newTitle }).subscribe({
+  //       next: () => {
+  //         this.newTitle = '';
+  //         this.loadTitles();
+  //       },
+  //       error: (error) => console.error('Error adding title', error)
+  //     });
+  //   }
+  // }
 
-  deleteTitle(titleId: number): void {
-    this.http.delete(`http://localhost:3000/api/titles/${titleId}`).subscribe({
-      next: () => this.loadTitles(),
-      error: (error) => console.error('Error deleting title', error)
-    });
-  }
+  // deleteTitle(titleId: number): void {
+  //   this.http.delete(`https://backendapi-84rm.onrender.com/api/titles/${titleId}`).subscribe({
+  //     next: () => this.loadTitles(),
+  //     error: (error) => console.error('Error deleting title', error)
+  //   });
+  // }
 
   loadVideos(): void {
-    this.http.get<string[]>('http://localhost:3000/api/videos').subscribe({
+    this.http.get<string[]>('https://backendapi-84rm.onrender.com/api/videos').subscribe({
       next: (data) => this.videos = data,
       error: (error) => console.error('Error loading videos', error)
     });
@@ -60,7 +60,7 @@ export class MainComponent implements OnInit {
       const formData = new FormData();
       formData.append('video', this.selectedVideoFile);
    
-      this.http.post('http://localhost:3000/api/videos', formData).subscribe({
+      this.http.post('https://backendapi-84rm.onrender.com/api/videos', formData).subscribe({
         next: () => {
           this.selectedVideoFile;
           this.loadVideos();
@@ -80,14 +80,14 @@ export class MainComponent implements OnInit {
   }
 
   deleteVideo(videoName: string): void {
-    this.http.delete(`http://localhost:3000/api/videos/${videoName}`).subscribe({
+    this.http.delete(`https://backendapi-84rm.onrender.com/api/videos/${videoName}`).subscribe({
       next: () => this.loadVideos(),
       error: (error) => console.error('Error deleting video', error)
     });
   }
 
   loadImages(): void {
-    this.http.get<string[]>('http://localhost:3000/api/images').subscribe({
+    this.http.get<string[]>('https://backendapi-84rm.onrender.com/api/images').subscribe({
       next: (data) => this.images = data,
       error: (error) => console.error('Error loading images', error)
     });
@@ -98,7 +98,7 @@ export class MainComponent implements OnInit {
       const formData = new FormData();
       formData.append('image', this.selectedImageFile);
 
-      this.http.post('http://localhost:3000/api/images', formData).subscribe({
+      this.http.post('https://backendapi-84rm.onrender.com/api/images', formData).subscribe({
         next: () => {
           this.selectedImageFile = null;
           this.loadImages();
@@ -116,17 +116,17 @@ export class MainComponent implements OnInit {
   }
 
   deleteImage(imageName: string): void {
-    this.http.delete(`http://localhost:3000/api/images/${imageName}`).subscribe({
+    this.http.delete(`https://backendapi-84rm.onrender.com/api/images/${imageName}`).subscribe({
       next: () => this.loadImages(),
       error: (error) => console.error('Error deleting image', error)
     });
   }
 
   getVideoUrl(videoName: string): string {
-    return `http://localhost:3000/videos/${videoName}`;
+    return `https://backendapi-84rm.onrender.com/videos/${videoName}`;
   }
 
   getImageUrl(imageName: string): string {
-    return `http://localhost:3000/images/${imageName}`;
+    return `https://backendapi-84rm.onrender.com/images/${imageName}`;
   }
 }
