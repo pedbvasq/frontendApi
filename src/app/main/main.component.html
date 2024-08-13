@@ -1,0 +1,41 @@
+<div class="container">
+  <h1>Gestión de Medios</h1>
+
+  <div id="titles">
+    <h2>Títulos</h2>
+    <ul>
+      <li *ngFor="let title of titles">
+        {{ title.name }}
+        <button (click)="deleteTitle(title.id)">Eliminar</button>
+      </li>
+    </ul>
+    <input type="text" [(ngModel)]="newTitle" placeholder="Nuevo título">
+    <button (click)="addTitle()">Agregar Título</button>
+  </div>
+
+  <div id="videos">
+    <h2>Videos</h2>
+    <ul>
+      <li *ngFor="let video of videos">
+        <video [src]="getVideoUrl(video)" controls width="300"></video>
+        {{ video }}
+        <button (click)="deleteVideo(video)">Eliminar</button>
+      </li>
+    </ul>
+    <input type="file" (change)="addVideo($event)" accept="video/*">
+    <button (click)="uploadVideo()">Agregar Video</button>
+  </div>
+
+  <div id="images">
+    <h2>Imágenes</h2>
+    <ul>
+      <li *ngFor="let image of images">
+        <img [src]="getImageUrl(image)" alt="Image" class="media-item">
+        <div>{{ image }}</div>
+        <button (click)="deleteImage(image)">Eliminar</button>
+      </li>
+    </ul>
+    <input type="file" (change)="addImage($event)" accept="image/*">
+    <button (click)="uploadImage()">Agregar Imagen</button>
+  </div>
+</div>
